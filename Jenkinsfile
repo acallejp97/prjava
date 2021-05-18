@@ -3,6 +3,11 @@ pipeline {
 
     environment{
         nombre="${variable1}"
+	maquina="""${sh(
+			returnStdout: true,
+			script: 'uname -n'
+                      )
+		    }"""
     }
     stages {
         stage('Compilar fichero Simple') {
@@ -25,5 +30,12 @@ pipeline {
                 sh 'java Param ${nombre}'
             }
         }
+	stage('nombreMaquina'){
+	   steps{
+               echo "Y aquí visualizeo el nombre de la maquina "
+	       sh 'javac Maquina.java'
+               sh 'java Maquina ${MAQUINA}'
+           }
+       }
     }
 }
