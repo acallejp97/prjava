@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Compilar fichero') {
             steps {
-                sh 'javac Simple.java'
+                sh 'javac Param.java'
             }
         }
         stage('Ejecutar fichero') {
             steps {
-                sh 'java Simple'
+                sh 'java Param ${variable1}'
             }
         }
     }
